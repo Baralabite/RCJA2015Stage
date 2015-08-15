@@ -21,41 +21,44 @@ PUB routine | curtainStatus
   repeat until Stage.buttonPressed
   repeat while Stage.buttonPressed
   Clock.start
+  stage.buzz
   repeat
-    if Clock.getCount == 1943
+    if Clock.getCount == 11159
       Stage.setLightValue(80)
-    if Clock.getCount == 7898
+    if Clock.getCount == 17097
       Stage.setLightValue(20)
 
-    if Clock.getCount == 2051
+    if Clock.getCount == 11159
       Stage.openCurtains
       curtainStatus := 1
 
-    if Clock.getCount == 8638
+    if Clock.getCount == 17848
       Stage.setLightValue(80)
-    if Clock.getCount == 14811
+    if Clock.getCount == 24346
       Stage.setLightValue(20)
 
-    if Clock.getCount == 15882
+    if Clock.getCount == 25214
       Stage.setLightValue(80)
-    if Clock.getCount == 17688
+    if Clock.getCount == 27069
       Stage.setLightValue(20)
 
-    if Clock.getCount == 18206
+    if Clock.getCount == 27443
       Stage.setLightValue(80)
-    if Clock.getCount == 18781
+    if Clock.getCount == 27990
       Stage.setLightValue(20)
 
-    if Clock.getCount == 19301
+    if Clock.getCount == 28492
       Stage.setLightValue(80)
-    if Clock.getCount == 19770
+    if Clock.getCount == 29104
       Stage.setLightValue(20)
 
-    if Clock.getCount == 20299
+    if Clock.getCount == 29648
       Stage.setLightValue(80)
 
-    if Clock.getCount == 22736
+    if Clock.getCount == 32571
       stage.setLightValue(20)
+
+    if Clock.getCount == 47310
       Stage.closeCurtains
       curtainStatus := 2
 
