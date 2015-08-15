@@ -28,7 +28,7 @@ PUB initCurtains
 
   DIRA[CURTAIN_ENA..CURTAIN_DIR]~~
   DIRA[CURTAIN_CUR]~
-  repeat until INA[ESCON_CUR] == 0                      'Waits for current overload indicator to set
+  repeat until INA[CURTAIN_CUR] == 0                      'Waits for current overload indicator to set
 
 PUB initLight
 
@@ -44,9 +44,17 @@ PUB initMisc
 
 PUB openCurtains
 
+  moveOpen
+  repeat until INA[CURTAIN_CUR] == 1
+  stopCurtains
+
+PUB moveOpen
+
   OUTA[CURTAIN_ENA..CURTAIN_DIR] := %11
-  repeat until buttonPressed
-  STOP
+
+PUB curtainsOpen
+
+  return INA[CURTAIN_CUR]
 
 PUB stopCurtains
 
@@ -55,24 +63,26 @@ PUB stopCurtains
 PUB closeCurtains
 
   OUTA[CURTAIN_ENA..CURTAIN_DIR] := %10
+  waitcnt((clkfreq/1000)*5500+cnt)
+  stopCurtains
 
 PUB buzz
 
   OUTA[BUZZER_PIN]~~
-  waitcnt(clkfreq/5+cnt)
+  waitcnt(clkfreq/10+cnt)
   OUTA[BUZZER_PIN]~
 
 PUB buttonPressed
 
-  return INA[CURTAIN_CUR]
+  return INA[SWITCH_PIN]
 
 PUB turnLightOff
 
-  OUTA[LIGHT_ENA]~~
+  OUTA[LIGHT_ENA]~
 
 PUB turnLightOn
 
-  OUTA[LIGHT_ENA]~
+  OUTA[LIGHT_ENA]~~
 
 PUB setLightValue(val)
   {Please note min value is 10-11, max value is 89-90}
